@@ -18,10 +18,10 @@ class Personaje: #Nombre Molde
             self.Fuerza = fuerza # -100
         else:
             raise TypeError("La fuerza debe ser Mayor a 0")
-        self.Oro = 500
+        self.Oro = 1000
 
     def GetStats(self):
-        return f"Nombre: {self.Nombre}, Vida: {self.Vida}, Fuerza: {self.Fuerza}, Oro: {self.Oro}"
+        return f"Nombre: {self.Nombre}\nVida: {self.Vida}\nFuerza: {self.Fuerza}\nOro: {self.Oro}"
 
     def Atacar(self, objetivo):
         damage = int(self.Fuerza / 10 + 15)
@@ -31,7 +31,7 @@ class Personaje: #Nombre Molde
         self.Oro -= ItemComprado.Coste
         self.Vida += ItemComprado.Vida
         self.Fuerza += ItemComprado.Fuerza
-        self.Inventario.append(ItemComprado)        
+        self.Inventario.append(ItemComprado)
 
 
 # #Objetos (Instancia de Personaje)
