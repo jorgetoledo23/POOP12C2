@@ -1,13 +1,25 @@
 class Item:
 
     def __init__(self, nombre:str, vida:int, fuerza:int, coste:int):
-        self.Nombre = nombre.title()
-        self.Vida = vida
-        self.Fuerza = fuerza
-        self.Coste = coste
+        self.__Nombre = nombre.title()
+        self.__Vida = vida
+        self.__Fuerza = fuerza
+        self.__Coste = coste
 
     def GetStats(self):
-        return f"Coste: {self.Coste}, Nombre: {self.Nombre}, Fuerza: {self.Fuerza}, Vida: {self.Vida}"
+        return f"Coste: {self.__Coste}, Nombre: {self.__Nombre}, Fuerza: {self.__Fuerza}, Vida: {self.__Vida}"
+
+    def GetCoste(self):
+        return self.__Coste
+
+    def GetVida(self):
+        return self.__Vida
+
+    def GetFuerza(self):
+        return self.__Fuerza
+
+    def GetNombre(self):
+        return self.__Nombre
 
 
 Item1 = Item("Espada", 0, 100, 300)

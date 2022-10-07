@@ -9,7 +9,10 @@ JugadorEspera = Player2
 Turno = 1
 ContadorTurnos = 1
 
-while 10>5:
+
+Ganador = None
+
+while True:
 
     import os
     os.system("cls")
@@ -17,10 +20,18 @@ while 10>5:
     print(f"Cantidad de Turnos Jugados: {ContadorTurnos}")
     print(f"Turno: {Turno}\n")
 
-    print(f"Stats Player 1: {Player1.GetStats()}\n")
-    print(f"Stats Player 2: {Player2.GetStats()}\n")
+    print(f"\nStats Player 1: {Player1.GetStats()}")
+    print("Inventario:")
+    for item in Player1.GetInvetario():
+        print(item.GetNombre())
 
-    print("[1] - Atacar")
+
+    print(f"\nStats Player 2: {Player2.GetStats()}")
+    print("Inventario: ")
+    for item in Player2.GetInvetario():
+        print(item.GetNombre())
+
+    print("\n[1] - Atacar")
     print("[2] - Comprar")
 
     opcion = input("\nSelecciona tu Jugada: ")
@@ -28,6 +39,8 @@ while 10>5:
     if opcion == "1":
         JugadorTurno.Atacar(JugadorEspera)
         input("Ataque Exitoso!")
+        if JugadorEspera.GetVida() <= 0:
+            Ganador = JugadorTurno
 
     if opcion == "2":
         os.system("cls")
@@ -40,6 +53,11 @@ while 10>5:
         JugadorTurno.Comprar(ListadoItems[seleccion - 1])
         input("Compra Exitosa!")
 
+
+    if Ganador == None:
+        pass
+    else:
+        break
     
     if Turno == 1: 
         Turno = 2 
@@ -52,3 +70,8 @@ while 10>5:
 
     ContadorTurnos += 1
     input("Turno Finalizado. Presiona Enter para Continuar...")
+
+
+os.system("cls")
+print("Juego Terminado!!!")
+print(f"El Ganador es: {Ganador.GetStats()}")

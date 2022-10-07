@@ -1,72 +1,43 @@
-#Class => Clase
-#Molde para crear Objetos
-#Todos los Objetos creados a partir de ese Model(Class)
-#Tendran una misma Estructura
-#El mismo Esqueleto
+from Model.Item import Item
 
-#import Item
 
 class Personaje: #Nombre Molde
-    #Atributos => Propiedades => Campos
-    Inventario = []
 
-    #Constructor
     def __init__(self, nombre:str, fuerza:int, vida:int):
-        self.Nombre = nombre.title()
-        self.Vida = vida
+        self.__Nombre = nombre.title()
+        self.__Vida = vida
         if fuerza >= 0:
-            self.Fuerza = fuerza # -100
+            self.__Fuerza = fuerza # -100
         else:
             raise TypeError("La fuerza debe ser Mayor a 0")
-        self.Oro = 1000
+        self.__Oro = 1000
+        self.__Inventario = []
+
+    def obtenerOro(self):
+        return self.__Oro / 2
+
+    def setearOro(self, NuevaCantidadOro):
+        if NuevaCantidadOro > 0:
+            self.__Oro = NuevaCantidadOro
+        else: 
+            raise TypeError("Oro No Valido")
 
     def GetStats(self):
-        return f"Nombre: {self.Nombre}\nVida: {self.Vida}\nFuerza: {self.Fuerza}\nOro: {self.Oro}"
+        return f"Nombre: {self.__Nombre}\nVida: {self.__Vida}\nFuerza: {self.__Fuerza}\nOro: {self.__Oro}"
 
     def Atacar(self, objetivo):
-        damage = int(self.Fuerza / 10 + 15)
-        objetivo.Vida -= damage
+        damage = int(self.__Fuerza / 10 + 15)
+        objetivo.__Vida -= damage
     
-    def Comprar(self, ItemComprado):
-        self.Oro -= ItemComprado.Coste
-        self.Vida += ItemComprado.Vida
-        self.Fuerza += ItemComprado.Fuerza
-        self.Inventario.append(ItemComprado)
+    def Comprar(self, ItemComprado:Item):
+        self.__Oro -= ItemComprado.GetCoste()
+        self.__Vida += ItemComprado.GetVida()
+        self.__Fuerza += ItemComprado.GetFuerza()
+        self.__Inventario.append(ItemComprado)
+
+    def GetVida(self):
+        return self.__Vida #100 50 0 -10
 
 
-# #Objetos (Instancia de Personaje)
-# P1 = Personaje(fuerza=100, vida=1000, nombre="Lee Sin")
-
-# P2 = Personaje("Janna", 10, 500)
-
-# #Generar el Personaje Garen, 2000 de Vida, 50 Fuerza, 1000 de Oro
-# P3 = Personaje("gARen", 50, 2000)
-
-
-# P1.Comprar(Item.ListadoItems[0])
-# P3.Comprar(Item.ListadoItems[1])
-# P1.Atacar(P3)
-# P3.Atacar(P2)
-
-
-
-# print(P1.GetStats())
-# print(P2.GetStats())
-# print(P3.GetStats())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def GetInvetario(self):
+        return self.__Inventario
