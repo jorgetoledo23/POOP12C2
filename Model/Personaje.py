@@ -35,6 +35,12 @@ class Personaje: #Nombre Molde
         self.__Fuerza += ItemComprado.GetFuerza()
         self.__Inventario.append(ItemComprado)
 
+    def Vender(self, ItemVendido:Item):
+        self.__Oro += ItemVendido.GetCoste() / 2
+        self.__Vida -= ItemVendido.GetVida()
+        self.__Fuerza -= ItemVendido.GetFuerza()
+        self.__Inventario.remove(ItemVendido)
+
     def GetVida(self):
         return self.__Vida #100 50 0 -10
 

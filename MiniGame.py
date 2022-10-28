@@ -14,6 +14,7 @@ Ganador = None
 
 while True:
 
+    TurnoExitoso = True
     import os
     os.system("cls")
 
@@ -43,30 +44,59 @@ while True:
             Ganador = JugadorTurno
 
     if opcion == "2":
+
+        if len(JugadorTurno.GetInvetario()) >=6:
+            print("No Puedes Comprar mas Items!")
+            TurnoExitoso = False
+        else:
+            os.system("cls")
+            id = 1
+            for item in ListadoItems:
+                print(f"[{id}] - {item.GetStats()}")
+                id += 1
+            seleccion = int(input("\nSelecciona el Item a Comprar: "))
+
+            while (seleccion <= 0 or seleccion > len(ListadoItems)):
+                print("Seleccion Invalida!")
+                seleccion = int(input("\nSelecciona el Item a Comprar: "))
+
+            JugadorTurno.Comprar(ListadoItems[seleccion - 1])
+            input("Compra Exitosa!")
+
+    if opcion == "3":
         os.system("cls")
         id = 1
-        for item in ListadoItems:
+        for item in JugadorTurno.GetInvetario():
             print(f"[{id}] - {item.GetStats()}")
             id += 1
-        seleccion = int(input("\nSelecciona el Item a Comprar: "))
+        seleccion = int(input("\nSelecciona el Item a Vender: "))
 
-        JugadorTurno.Comprar(ListadoItems[seleccion - 1])
-        input("Compra Exitosa!")
+        while (seleccion <= 0 or seleccion > len(JugadorTurno.GetInvetario())):
+            print("Seleccion Invalida!")
+            seleccion = int(input("\nSelecciona el Item a Vender: "))
+
+        JugadorTurno.Vender(JugadorTurno.GetInvetario()[seleccion - 1])
+        input("Venta Exitosa!")
+
+    if opcion == "4":
+        ff = input("Estas Seguro de Rendirte? (S/N): ")
+        if ff=="S":
+            Ganador = JugadorEspera
+        else:
+            TurnoExitoso = False
 
 
-    if Ganador == None:
-        pass
-    else:
+    if Ganador != None:
         break
-    
-    if Turno == 1: 
-        Turno = 2 
-        JugadorTurno = Player2
-        JugadorEspera = Player1
-    else: 
-        Turno = 1
-        JugadorTurno = Player1
-        JugadorEspera = Player2
+    if TurnoExitoso:
+        if Turno == 1: 
+            Turno = 2 
+            JugadorTurno = Player2
+            JugadorEspera = Player1
+        else: 
+            Turno = 1
+            JugadorTurno = Player1
+            JugadorEspera = Player2
 
     ContadorTurnos += 1
     input("Turno Finalizado. Presiona Enter para Continuar...")
