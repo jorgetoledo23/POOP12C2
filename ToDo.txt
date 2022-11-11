@@ -1,9 +1,8 @@
-1. Establecer el Ganador (se produce cuando la vida de uno de 
-los jugadores baja de 0)
+1 - Crear Base de Datos MySql
+    (Tener Servidor)
+    (Crear BD)
+    (Crear Estructura BD)
 
-2. Mostrar el Inventario (Abajo de las Stats) de cada jugador
+2 - Instalar Python MySqlConnector
 
-3. Validar que al momento de comprar, tenga el oro necesario
-
-4. Posibilidad de Vender para los Jugadores
-(retorna el 50% del valor original del Item)
+3 - Establecer Coneccion
