@@ -34,6 +34,7 @@ class DAO:
 
         cursor.execute(add_item, data_item)
         self.cnx.commit()
+        self.cnx.rollback()
 
     def LeerItems(self):
         cursor = self.cnx.cursor()

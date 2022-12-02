@@ -1,8 +1,0 @@
-1 - Crear Base de Datos MySql
-    (Tener Servidor)
-    (Crear BD)
-    (Crear Estructura BD)
-
-2 - Instalar Python MySqlConnector
-
-3 - Establecer Conexion
